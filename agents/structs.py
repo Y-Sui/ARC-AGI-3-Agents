@@ -120,13 +120,15 @@ class ComplexAction(BaseModel):
 
 
 class GameAction(Enum):
+    # Semantic hints: 1=W/Up, 2=S/Down, 3=A/Left, 4=D/Right, 5=Enter/Space/Delete,
+    # 6=Click/Point with coordinates, 7=extra simple action (game-specific use), RESET=start over.
     RESET = (0, SimpleAction)
     ACTION1 = (1, SimpleAction)
     ACTION2 = (2, SimpleAction)
     ACTION3 = (3, SimpleAction)
     ACTION4 = (4, SimpleAction)
     ACTION5 = (5, SimpleAction)
-    ACTION6 = (6, ComplexAction)
+    ACTION6 = (6, ComplexAction)  # requires integer x and y between 0 and 63 (inclusive)
     ACTION7 = (7, SimpleAction)
 
     action_type: Union[Type[SimpleAction], Type[ComplexAction]]

@@ -107,8 +107,20 @@ def main() -> None:
         help="Comma-separated list of tags for the scorecard (e.g., 'experiment,v1.0')",
         default=None,
     )
+    parser.add_argument(
+        "-l",
+        "--list-agents",
+        action="store_true",
+        help="List all available agents and exit.",
+    )
 
     args = parser.parse_args()
+
+    if args.list_agents:
+        print("Available agents:")
+        for name in sorted(AVAILABLE_AGENTS.keys()):
+            print(f" - {name}")
+        return
 
     if not args.agent:
         logger.error("An Agent must be specified")
